@@ -1,0 +1,13 @@
+www:
+    type: custom
+    buildscript: builder
+    systempackages:
+        - libarchive1
+
+        - libarchive-dev
+        - libgmp3-dev
+        - libossp-uuid-dev
+        - libreadline-dev
+        - zlib1g-dev
+    ports:
+        www: http
