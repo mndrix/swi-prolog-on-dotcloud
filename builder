@@ -10,13 +10,6 @@ BUILDER_DIR="$(dirname "$0")"
 msg() {
     echo -e "\033[1;32m-->\033[0m $0:" $*
 }
-move_to_approot() {
-    if [ -n "$SERVICE_APPROOT" ]; then
-        cd $SERVICE_APPROOT
-    else
-        cd $BUILDER_DIR
-    fi
-}
 
 
 # download SWI-Prolog binaries if needed
@@ -27,6 +20,13 @@ if [ ! -d "$HOME/swipl/lib/swipl-$VERSION" ]; then
     tar -xz -C ~ -f swipl.tar.gz
     rm -f swipl.tar.gz
 fi
+
+# copy all project code into $HOME
+msg "Installing your code"
+if [ -n "$SERVICE_APPROOT" ]; then
+    cd $SERVICE_APPROOT
+fi
+cp -a . ~
 
 # build ~/profile with $HOME/swipl/bin in $PATH
 cd
@@ -41,13 +41,7 @@ cat > pl <<'EOF'
 exec ~/swipl/bin/swipl -q -f none -t main -s $@
 EOF
 chmod +x pl
-cd "$START_DIR"
-cd "$BUILDER_DIR"
-
-# copy all project code into $HOME
-msg "Installing your code"
-move_to_approot
-cp -a . ~
 
 # install pack dependencies based on Packfile or pack.pl
-swipl -q -f "$BUILDER_DIR/install-deps.pl" -g main
+msg "Installing dependencies"
+swipl -q -f "$START_DIR/$BUILDER_DIR/install-deps.pl" -g main
