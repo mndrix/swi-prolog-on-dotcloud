@@ -25,6 +25,13 @@ cat > profile <<'EOF'
 export PATH="~/swipl/bin:$PATH"
 EOF
 source profile
+
+# build pl convenience wrapper for running SWI-Prolog scripts
+cat > pl <<'EOF'
+#!/bin/bash
+exec ~/swipl/bin/swipl -q -f none -t main -s $@
+EOF
+chmod +x pl
 cd "$BUILDER_DIR"
 
 # copy all project code into $HOME
