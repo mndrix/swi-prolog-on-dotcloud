@@ -1,0 +1,7 @@
+www:
+    type: custom
+    buildscript: swi-prolog-on-dotcloud/builder
+    systempackages:
+        - libarchive1
+    ports:
+        www: http
