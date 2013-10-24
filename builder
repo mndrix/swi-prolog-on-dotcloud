@@ -2,6 +2,7 @@
 
 VERSION=6.5.2
 SWIPL_URL="https://commondatastorage.googleapis.com/ndrix/swi-prolog-on-dotcloud/$VERSION.tar.gz"
+START_DIR=`pwd`
 BUILDER_DIR="$(dirname "$0")"
 
 
@@ -40,6 +41,7 @@ cat > pl <<'EOF'
 exec ~/swipl/bin/swipl -q -f none -t main -s $@
 EOF
 chmod +x pl
+cd "$START_DIR"
 cd "$BUILDER_DIR"
 
 # copy all project code into $HOME
