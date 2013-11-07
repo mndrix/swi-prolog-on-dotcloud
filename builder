@@ -8,7 +8,7 @@ BUILDER_DIR="$(dirname "$0")"
 
 # functions
 msg() {
-    echo -e "\033[1;32m-->\033[0m $0:" $*
+    echo -e "\033[1;32m-->\033[0m " $*
 }
 
 
