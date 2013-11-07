@@ -51,3 +51,4 @@ chmod +x pl
 # install pack dependencies based on Packfile or pack.pl
 msg "Installing dependencies"
 swipl -q -f "$START_DIR/$BUILDER_DIR/install-deps.pl" -g main
+msg "Done installing dependencies"
