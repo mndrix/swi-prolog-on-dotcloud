@@ -12,6 +12,12 @@ msg() {
 }
 
 
+# use custom SWI-Prolog build, if wanted
+if [ -n "$SERVICE_SWIPLURL" ]; then
+    msg "Using custom SWI-Prolog build"
+    SWIPL_URL="$SERVICE_SWIPLURL"
+fi
+
 # download SWI-Prolog binaries if needed
 if [ ! -d "$HOME/swipl/lib/swipl-$VERSION" ]; then
     msg "Downloading SWI-Prolog $VERSION binaries"
