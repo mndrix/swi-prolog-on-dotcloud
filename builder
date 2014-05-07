@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=7.1.13
+VERSION=7.1.14
 SWIPL_URL="https://commondatastorage.googleapis.com/ndrix/swi-prolog-on-dotcloud/$VERSION.tar.gz"
 START_DIR=`pwd`
 BUILDER_DIR="$(dirname "$0")"
